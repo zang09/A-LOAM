@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="project" default="aloam_velodyne"/>
+    
+    <!--- Image transparent -->
+    <node pkg="image_transport" type="republish" name="republish" args="compressed in:=/usb_cam/image_raw raw out:=/usb_cam/image_raw_down" output="screen"/>
+
+    <!--- Sim Time -->
+    <param name="use_sim_time" value="false" />
+
+    <!-- Parameters -->
+    <rosparam file="$(find aloam_velodyne)/config/params.yaml" command="load" />
+
+    <node pkg="aloam_velodyne" type="ascanRegistration" name="ascanRegistration" output="screen" />
+
+    <node pkg="aloam_velodyne" type="alaserOdometry" name="alaserOdometry" output="screen" />
+
+    <node pkg="aloam_velodyne" type="alaserMapping" name="alaserMapping" output="screen" />
+    
+    <!--- Run Rviz-->
+    <node pkg="rviz" type="rviz" name="$(arg project)_rviz" args="-d $(find aloam_velodyne)/config/aloam_velodyne.rviz" />
+
+</launch>

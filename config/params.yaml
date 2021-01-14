@@ -1,0 +1,33 @@
+aloam_velodyne: 
+  
+  # Topics
+  pointcloud_topic: "velodyne_points"         # Point cloud data
+  imu_topic: "mti30/imu/data"                 # IMU data
+  
+  # Sensor Settings
+  use_imu: true
+  scan_line: 16                               # number of lidar channel
+  mapping_skip_frame: 1                       # if 1, do mapping 10 Hz, if 2, do mapping 5 Hz. Suggest to use 1, it will adjust frequence automaticlly 
+  minimum_range: 0.4                          # removed too close points
+    
+  mapping_line_resolution: 0.2
+  mapping_plane_resolution: 0.4
+  
+  # IMU Settings
+  imu_gyr_noise: 1.0934456724515785e-02
+  imu_gyr_biasN: 7.2638357006678443e-05
+  imu_acc_noise: 1.7626729333123911e-02
+  imu_acc_biasN: 2.4924558646437705e-04
+  imu_gravity: 9.7924953858220896e+00
+  imu_rpy_weight: 0.01
+
+  # Extrinsics (lidar -> IMU)
+  extrinsic_trans: [0.0, 0.0, 0.0]
+
+  ## 180
+  extrinsic_rot: [0, -1, 0,
+                  1, 0, 0,
+                  0, 0, 1]
+  extrinsic_rpy: [0, 1, 0,
+                  -1, 0, 0,
+                  0, 0, 1]

@@ -557,7 +557,7 @@ void process()
 				TicToc t_tree;
 				kdtreeCornerFromMap->setInputCloud(laserCloudCornerFromMap);
 				kdtreeSurfFromMap->setInputCloud(laserCloudSurfFromMap);
-				printf("build tree time %f ms \n", t_tree.toc());
+        //printf("build tree time %f ms \n", t_tree.toc());
 
 				for (int iterCount = 0; iterCount < 2; iterCount++)
 				{
@@ -707,7 +707,7 @@ void process()
 					//printf("corner num %d used corner num %d \n", laserCloudCornerStackNum, corner_num);
 					//printf("surf num %d used surf num %d \n", laserCloudSurfStackNum, surf_num);
 
-					printf("mapping data assosiation time %f ms \n", t_data.toc());
+          //printf("mapping data assosiation time %f ms \n", t_data.toc());
 
 					TicToc t_solver;
 					ceres::Solver::Options options;
@@ -888,7 +888,7 @@ void process()
 			frameCount++;
 		}
 		std::chrono::milliseconds dura(2);
-        std::this_thread::sleep_for(dura);
+    std::this_thread::sleep_for(dura);
 	}
 }
 
@@ -899,8 +899,8 @@ int main(int argc, char **argv)
 
 	float lineRes = 0;
 	float planeRes = 0;
-	nh.param<float>("mapping_line_resolution", lineRes, 0.4);
-	nh.param<float>("mapping_plane_resolution", planeRes, 0.8);
+  nh.param<float>("aloam_velodyne/mapping_line_resolution", lineRes, 0.4);
+  nh.param<float>("aloam_velodyne/mapping_plane_resolution", planeRes, 0.8);
 	printf("line resolution %f plane resolution %f \n", lineRes, planeRes);
 	downSizeFilterCorner.setLeafSize(lineRes, lineRes,lineRes);
 	downSizeFilterSurf.setLeafSize(planeRes, planeRes, planeRes);
